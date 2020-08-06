@@ -2,6 +2,6 @@
 	"short_name": "COVID-19 Tracker",
 	"name": "U.S. COVID-19 Tracker",
 	"start_url": "https://us-covid19-tracker.netlify.app",
-	"display": "fullscreen",
+	"display": "standalone",
 	"orientation": "landscape"
 }
