@@ -2,6 +2,6 @@
 	"short_name": "COVID-19 Tracker",
 	"name": "U.S. COVID-19 Tracker",
 	"start_url": "index.html",
-	"display": "standalone",
+	"display": "fullscreen",
 	"orientation": "landscape"
 }
