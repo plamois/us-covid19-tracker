@@ -11,9 +11,9 @@ function formatDate(num) {
 var covid = $.ajax({
     url: "https://covidtracking.com/api/states",
     dataType: "json",
-    success: console.log("States health data successfully loaded."),
+    success: console.log("State health data successfully loaded."),
     error: function(xhr) {
-        alert(`covid: ${xhr.statusText}`);
+        alert(`State api ${xhr.statusText}`);
     }
 });
 
@@ -22,7 +22,7 @@ var covidTotal = $.ajax({
     dataType: "json",
     success: console.log("USA health data successfully loaded."),
     error: function(xhr) {
-        alert(`covidTotal: ${xhr.statusText}`);
+        alert(`USA api ${xhr.statusText}`);
     }
 });
 
@@ -39,8 +39,6 @@ $.when(covid, covidTotal).done(function() {
             }
         });
     });
-
-    console.log(covidTotal);
 
     var map = L.map('map', { zoomControl: false, zoomSnap: 0.25, zoomDelta: 0.5 }).setView([39.8, -98.5], 4);
 
@@ -83,45 +81,34 @@ $.when(covid, covidTotal).done(function() {
             weight: 1,
             opacity: 1,
             color: 'grey',
-            //dashArray: '3',
             fillOpacity: 0.7,
             fillColor: getColor((feature.properties.positive) / (feature.properties.POP) * 100000)
         };
     }
 
-    function highlightFeature(e) {
-        var layer = e.target;
-
-        layer.setStyle({
-            weight: 2,
-            color: '#666',
-            dashArray: '',
-            fillOpacity: 0.7
-        });
-
-        if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
-            layer.bringToFront();
-        }
-
-        info.update(layer.feature.properties);
-    }
-
-    var geojson;
-
-    function resetHighlight(e) {
-        geojson.resetStyle(e.target);
-        info.update();
-    }
-    // //Remove comment to enable zoom on click
-    // function zoomToFeature(e) {
-    //   map.fitBounds(e.target.getBounds());
-    // }
+    var prevLayerClicked = null;
 
     function onEachFeature(feature, layer) {
         layer.on({
-            mouseover: highlightFeature,
-            mouseout: resetHighlight,
-            //click: zoomToFeature
+            click: function(e) {
+                if (prevLayerClicked !== null) {
+                    geojson.resetStyle(prevLayerClicked);
+                }
+
+                var layer = e.target;
+                layer.setStyle({
+                    weight: 2,
+                    color: '#666',
+                    fillOpacity: 0.7
+                });
+
+                if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+                    layer.bringToFront();
+                }
+
+                info.update(layer.feature.properties);
+                prevLayerClicked = layer;
+            }
         });
     }
 
@@ -130,9 +117,7 @@ $.when(covid, covidTotal).done(function() {
         onEachFeature: onEachFeature
     }).addTo(map);
 
-    console.log(statesData);
-
-    //set mapvie to fit screen
+    //set mapview to fit screen
     var southWest = new L.LatLng(24.89, -124.94),
         northEast = new L.LatLng(49.3, -66.85),
         bounds = new L.LatLngBounds(southWest, northEast);
