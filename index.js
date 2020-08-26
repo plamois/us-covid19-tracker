@@ -9,7 +9,7 @@ function formatDate(num) {
 
 /* API DATA REQUESTS */
 var covid = $.ajax({
-    url: "https://covidtracking.com/api/states",
+    url: "https://api.covidtracking.com/v1/us/current.json",
     dataType: "json",
     success: console.log("State health data successfully loaded."),
     error: function(xhr) {
@@ -18,7 +18,7 @@ var covid = $.ajax({
 });
 
 var covidTotal = $.ajax({
-    url: "https://covidtracking.com/api/v1/us/current.json",
+    url: "https://api.covidtracking.com/v1/us/current.json",
     dataType: "json",
     success: console.log("USA health data successfully loaded."),
     error: function(xhr) {
