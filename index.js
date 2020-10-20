@@ -65,15 +65,13 @@ $.when(covid, covidTotal).done(function() {
 
     //style and interaction settings
     function getColor(d) {
-        return d > 2000 ? '#800026' :
-            d > 1750 ? '#bd0026' :
-            d > 1500 ? '#e31a1c' :
-            d > 1250 ? '#fc4e2a' :
-            d > 1000 ? '#fd8d3c' :
-            d > 750 ? '#feb24c' :
-            d > 500 ? '#fed976' :
-            d > 250 ? '#ffeda0' :
-            '#ffffcc';
+        return d > 4000 ? '#990000' :
+            d > 3500 ? '#d7301f' :
+            d > 2750 ? '#ef6548' :
+            d > 2250 ? '#fc8d59' :
+            d > 1500 ? '#fdbb84' :
+            d > 750 ? '#fdd49e' :
+            '#fef0d9';
     }
 
     function style(feature) {
@@ -129,7 +127,7 @@ $.when(covid, covidTotal).done(function() {
 
     legend.onAdd = function(map) {
         var div = L.DomUtil.create('div', 'info legend'),
-            grades = [0, 250, 500, 750, 1000, 1250, 1500, 1750, 2000],
+            grades = [0, 750, 1500, 2250, 2750, 3500, 4000],
             labels = ['Cases per 100,000'],
             from, to;
 
