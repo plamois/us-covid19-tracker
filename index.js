@@ -153,7 +153,7 @@ $.when(covid, covidTotal).done(function() {
 
     totalUS.onAdd = function(map) {
         this._div = L.DomUtil.create('div', 'totalUS');
-        this._div.innerHTML = '<h2>U.S.A.</h2>' + '</br>' + '<h1>' + formatNumber(usData[0].positive) + '</h1>' + '<h4>Total Cases</h4>' + '<hr></br>' + '<h2>U.S.A.</h2>' + '</br>' + '<h1>' + formatNumber(usData[0].death) + '</br>' + '</h1>' + '<h4>Total Deaths</h4>' + '<hr></br>' + '<h2>U.S.A.</h2>' + '<h1>' + '</br>' + formatNumber(((usData[0].positive / 329877505) * 100000).toFixed(0)) + '</h1>' + '<h4>Cases per 100,000 People</h4>' + '<hr>' + '<p>API Last Updated: ' + formatDate(usData[0].date)
+        this._div.innerHTML = '<h2>U.S.A.</h2>' + '</br>' + '<h1>' + formatNumber(usData[0].positive) + '</h1>' + '<h4>Total Cases</h4>' + '<hr></br>' + '<h2>U.S.A.</h2>' + '</br>' + '<h1>' + formatNumber(usData[0].death) + '</br>' + '</h1>' + '<h4>Total Deaths</h4>' + '<hr></br>' + '<h2>U.S.A.</h2>' + '<h1>' + '</br>' + formatNumber(((usData[0].positive / 329877505) * 100000).toFixed(0)) + '</h1>' + '<h4>Cases per 100,000 People</h4>' + '<hr>' + '<p>Updated: ' + formatDate(usData[0].date)
         return this._div;
     };
 
