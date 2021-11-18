@@ -66,10 +66,10 @@ $.when(covid, covidTotal).done(function() {
     //style and interaction settings
     function getColor(d) {
         return d > 13000 ? '#990000' :
-            d > 11000 ? '#d7301f' :
-            d > 9000 ? '#ef6548' :
-            d > 7000 ? '#fc8d59' :
-            d > 5000 ? '#fdbb84' :
+            d > 11500 ? '#d7301f' :
+            d > 10000 ? '#ef6548' :
+            d > 8000 ? '#fc8d59' :
+            d > 6000 ? '#fdbb84' :
             d > 3000 ? '#fdd49e' :
             '#fef0d9';
     }
@@ -127,7 +127,7 @@ $.when(covid, covidTotal).done(function() {
 
     legend.onAdd = function(map) {
         var div = L.DomUtil.create('div', 'info legend'),
-            grades = [0, 3000, 5000, 7000, 9000, 11000, 13000],
+            grades = [0, 3000, 6000, 8000, 10000, 11500, 13000],
             labels = ['Cases per 100,000'],
             from, to;
 
@@ -153,7 +153,7 @@ $.when(covid, covidTotal).done(function() {
 
     totalUS.onAdd = function(map) {
         this._div = L.DomUtil.create('div', 'totalUS');
-        this._div.innerHTML = '<h2>U.S.A.</h2>' + '</br>' + '<h1>' + formatNumber(usData[0].positive) + '</h1>' + '<h4>Total Cases</h4>' + '<hr></br>' + '<h2>U.S.A.</h2>' + '</br>' + '<h1>' + formatNumber(usData[0].death) + '</br>' + '</h1>' + '<h4>Total Deaths</h4>' + '<hr></br>' + '<h2>U.S.A.</h2>' + '<h1>' + '</br>' + formatNumber(((usData[0].positive / 329877505) * 100000).toFixed(0)) + '</h1>' + '<h4>Cases per 100,000 People</h4>' + '<hr>' + '<p>Updated: ' + formatDate(usData[0].date)
+        this._div.innerHTML = '<h2>U.S.A.</h2>' + '</br>' + '<h1>' + formatNumber(usData[0].positive) + '</h1>' + '<h4>Total Cases</h4>' + '<hr></br>' + '<h2>U.S.A.</h2>' + '</br>' + '<h1>' + formatNumber(usData[0].death) + '</br>' + '</h1>' + '<h4>Total Deaths</h4>' + '<hr></br>' + '<h2>U.S.A.</h2>' + '<h1>' + '</br>' + formatNumber(((usData[0].positive / 329877505) * 100000).toFixed(0)) + '</h1>' + '<h4>Cases per 100,000 People</h4>' + '<hr>' + '<p>API Last Updated: ' + formatDate(usData[0].date)
         return this._div;
     };
 
